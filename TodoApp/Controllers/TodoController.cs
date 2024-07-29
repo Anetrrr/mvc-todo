@@ -21,7 +21,7 @@ namespace TodoApp.Controllers
         }
         public IActionResult Index()
         {
-            var items = _repo.GetAll();
+            var items = _todoService.GetTodos();
             ViewData["Items"] = items;
             return View(items);
         }

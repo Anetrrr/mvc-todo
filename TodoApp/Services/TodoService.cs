@@ -10,6 +10,12 @@ namespace TodoApp.Services
         {
             _repository = repository;
         }
+
+        public IEnumerable<TodoItem> GetTodos()
+        {
+           return _repository.GetAll();
+        }
+
         public TodoItem InsertTodo(CreateTodoViewModel model)
         {
             var todoItem = new TodoItem();
@@ -27,6 +33,7 @@ namespace TodoApp.Services
 
     public interface ITodoService
     {
+        IEnumerable<TodoItem> GetTodos();
         TodoItem InsertTodo(CreateTodoViewModel model);
 
     }
