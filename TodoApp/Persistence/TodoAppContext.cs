@@ -19,7 +19,7 @@ namespace TodoApp.Persistence
                 .HasKey(p => p.Id);
 
             modelBuilder.Entity<TodoItem>()
-                .HasData(new TodoItem { Id = 1, Description = "default todo" });
+                .HasData(new TodoItem { Id = 1, Description = "default todo", Status=Status.Created });
 
             base.OnModelCreating(modelBuilder);
         }

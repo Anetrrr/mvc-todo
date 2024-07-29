@@ -10,13 +10,6 @@ namespace TodoApp.Models
         public Status Status { get; set; }
        
     }
-    public class TodoItem2 : Base
-    {
-
-        public string Description { get; set; }
-        public Status Status { get; set; }
-
-    }
     public enum Status
     {
         Created = 1,

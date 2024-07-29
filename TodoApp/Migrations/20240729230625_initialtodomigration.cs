@@ -32,7 +32,7 @@ namespace TodoApp.Migrations
             migrationBuilder.InsertData(
                 table: "TodoItems",
                 columns: new[] { "Id", "CreatedOn", "Description", "IsActive", "Status", "UpdatedOn" },
-                values: new object[] { 1, new DateTime(2024, 7, 30, 0, 11, 38, 568, DateTimeKind.Local).AddTicks(7898), "default todo", true, 0, new DateTime(2024, 7, 30, 0, 11, 38, 568, DateTimeKind.Local).AddTicks(7913) });
+                values: new object[] { 1, new DateTime(2024, 7, 30, 0, 11, 38, 568, DateTimeKind.Local).AddTicks(7898), "default todo", true, 1, new DateTime(2024, 7, 30, 0, 11, 38, 568, DateTimeKind.Local).AddTicks(7913) });
 
 
         }

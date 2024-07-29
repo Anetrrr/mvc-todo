@@ -10,7 +10,6 @@ namespace TodoApp.Controllers
 {
     public class TodoController : Controller
     {
-        //public Dictionary <int, TodoItem> Items { get; set; }
         private readonly ITodoService _todoService;
 
         public TodoController(ITodoService todoService)
@@ -25,7 +24,6 @@ namespace TodoApp.Controllers
         }
         public IActionResult CreateTodo()
         {
-            //var item = new TodoItemViewModel { Items = Items };
             return View();
         }
 
@@ -42,8 +40,7 @@ namespace TodoApp.Controllers
                 }
 
             }
-           
-            //var item = new TodoItemViewModel { Items = Items };
+        
             return View(model);
         }
     }
