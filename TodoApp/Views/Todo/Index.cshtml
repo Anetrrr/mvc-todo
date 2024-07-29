@@ -1,0 +1,47 @@
+﻿@model List<TodoApp.Models.TodoItem>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="jumbotron">
+    <p><a asp-action="CreateTodo">Create New Todo</a></p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>S/N</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Created On</th>
+                <th>Updated On</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Description</td>
+                    <td>@item.Status</td>
+                    <td>@item.CreatedOn</td>
+                    <td>@item.UpdatedOn</td>
+
+
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+    <div>@Html.ActionLink("Download JSON", "GetJSON", new { sort = @ViewData["sortJSON"] }, new { target = "_blank" })</div>
+</div>
+
