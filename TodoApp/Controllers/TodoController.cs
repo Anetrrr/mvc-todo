@@ -11,12 +11,10 @@ namespace TodoApp.Controllers
     public class TodoController : Controller
     {
         //public Dictionary <int, TodoItem> Items { get; set; }
-        private readonly IGenericRepository<TodoItem> _repo;
         private readonly ITodoService _todoService;
 
-        public TodoController(IGenericRepository<TodoItem> repo, ITodoService todoService)
+        public TodoController(ITodoService todoService)
         {
-            _repo = repo;
             _todoService = todoService;
         }
         public IActionResult Index()
