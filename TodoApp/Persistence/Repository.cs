@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Razor.Language;
+﻿using Azure;
+using Microsoft.AspNetCore.Razor.Language;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using TodoApp.Models;
@@ -15,7 +16,19 @@ namespace TodoApp.Persistence
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var data = _context.Set<T>().Find(id);
+                if (data != null)
+                {
+                    _context.Remove(data);
+                    _context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occured. Delete not successful");
+            }
         }
 
         public IEnumerable<T> GetAll()
@@ -31,7 +44,21 @@ namespace TodoApp.Persistence
 
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var todo = _context.Set<T>().Find(id);
+
+                if (todo == null)
+                {
+                    throw new Exception($"Item with id {id} not found");
+                }
+                return todo;
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception("Error occured");
+            }
         }
 
         public T Insert(T obj)
@@ -47,9 +74,21 @@ namespace TodoApp.Persistence
             }
         }
 
+
+
         public void Update(T obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Set<T>().Update(obj);
+                _context.SaveChanges();
+                
+                
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occured. Update not successful");
+            }
         }
     }
 }

@@ -48,7 +48,18 @@ namespace TodoApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TodoItems", (string)null);
+                    b.ToTable("TodoItems");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedOn = new DateTime(2024, 7, 30, 13, 25, 43, 733, DateTimeKind.Local).AddTicks(7707),
+                            Description = "default todo",
+                            IsActive = true,
+                            Status = 1,
+                            UpdatedOn = new DateTime(2024, 7, 30, 13, 25, 43, 733, DateTimeKind.Local).AddTicks(7720)
+                        });
                 });
 #pragma warning restore 612, 618
         }

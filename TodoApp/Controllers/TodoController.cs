@@ -42,6 +42,41 @@ namespace TodoApp.Controllers
             }
         
             return View(model);
+            
         }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult GetOneTodo(int id)
+        {
+            var entity = _todoService.GetOneTodo(id);
+
+            return View("Update", entity);    
+
+        }
+
+        
+        [HttpPut, ValidateAntiForgeryToken]
+        public IActionResult Update(TodoItem model)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+             _todoService.UpdateTodo(model);
+                return RedirectToAction("GetTodos");
+           
+        }
+
+        [HttpDelete, ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+
+            _todoService.DeleteTodo(id);
+            return RedirectToAction("GetTodos");
+        }
+
+       
     }
 }
+

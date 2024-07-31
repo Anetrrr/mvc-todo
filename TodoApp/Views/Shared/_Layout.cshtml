@@ -3,10 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]</title>
+    <title>TodoApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TodoApp.styles.css" asp-append-version="true" />
+    <style>
+        a{
+            font-family: Verdana, Geneva, Tahoma, sans-serif
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -25,9 +30,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Todo" asp-action="Index">Todo</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                       
                     </ul>
                 </div>
             </div>

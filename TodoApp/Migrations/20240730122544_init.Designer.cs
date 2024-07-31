@@ -6,15 +6,14 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TodoApp.Persistence;
-using TodoAppContext = TodoApp.Persistence.TodoAppContext;
 
 #nullable disable
 
 namespace TodoApp.Migrations
 {
     [DbContext(typeof(TodoAppContext))]
-    [Migration("20240729230625_initialtodomigration")]
-    partial class initialtodomigration
+    [Migration("20240730122544_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,6 +52,17 @@ namespace TodoApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TodoItems");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedOn = new DateTime(2024, 7, 30, 13, 25, 43, 733, DateTimeKind.Local).AddTicks(7707),
+                            Description = "default todo",
+                            IsActive = true,
+                            Status = 1,
+                            UpdatedOn = new DateTime(2024, 7, 30, 13, 25, 43, 733, DateTimeKind.Local).AddTicks(7720)
+                        });
                 });
 #pragma warning restore 612, 618
         }
