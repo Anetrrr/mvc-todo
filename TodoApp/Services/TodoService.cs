@@ -55,10 +55,12 @@ namespace TodoApp.Services
                 {
                     entity.Description = model.Description;
                     entity.Status = model.Status;
-                   
-                  
 
+                    _repository.Update(entity);
+                    
                 }
+
+               
             }
             catch (Exception ex)
             {
