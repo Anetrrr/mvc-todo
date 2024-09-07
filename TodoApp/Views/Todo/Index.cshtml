@@ -32,9 +32,12 @@
 
 
                     <td>
-                        <a asp-controller="Todo" asp-action="GetOneTodo" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="GetOneTodo" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    @*     <a href="/Todo/GetOneTodo/@item.Id">Details</a> *@
+
+
+                        <a asp-controller="Todo" asp-action="Update" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-controller="Todo" asp-action="GetOneTodo" asp-route-id="@item.Id">Details</a> |
+                        <a asp-controller="Todo" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                     </td>
                 </tr>
 

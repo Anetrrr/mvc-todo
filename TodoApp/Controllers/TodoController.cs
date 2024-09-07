@@ -45,17 +45,39 @@ namespace TodoApp.Controllers
             
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
-        public IActionResult GetOneTodo(int id)
+        //[HttpGet, ValidateAntiForgeryToken]
+        //public IActionResult GetOneTodo(int id)
+        //{
+        //    var entity = _todoService.GetOneTodo(id);
+
+        //    return View(entity);    
+
+        //}
+
+        [HttpGet]
+
+        public IActionResult GetOneTodo(int? id)
         {
             var entity = _todoService.GetOneTodo(id);
 
-            return View("Update", entity);    
-
+                return View (entity);
         }
 
-        
-        [HttpPut, ValidateAntiForgeryToken]
+        [HttpGet]
+        public IActionResult Update(int? id)
+        {
+            var entity = _todoService.GetOneTodo(id);
+
+
+            if (entity != null)
+            {
+                return View(entity);
+
+            }
+            else return NotFound("id not found");
+
+        }
+        [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Update(TodoItem model)
         {
 
@@ -64,7 +86,9 @@ namespace TodoApp.Controllers
                 return View(model);
             }
              _todoService.UpdateTodo(model);
-                return RedirectToAction("GetTodos");
+            
+            TempData["msg"] = "Update is successful!";
+                return RedirectToAction("Index");
            
         }
 
@@ -73,6 +97,8 @@ namespace TodoApp.Controllers
         {
 
             _todoService.DeleteTodo(id);
+            TempData["msg"] = "Update is successful!";
+
             return RedirectToAction("GetTodos");
         }
 

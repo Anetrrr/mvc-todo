@@ -31,7 +31,7 @@ namespace TodoApp.Services
             return new TodoItem();
         }
 
-        public TodoItem GetOneTodo(int id)
+        public TodoItem GetOneTodo(int? id)
         {
             var entity = _repository.GetById(id);
             return entity;
@@ -43,6 +43,7 @@ namespace TodoApp.Services
             if (entity != null)
             {
                 _repository.Delete(entity.Id);
+                
             }
         }
         public void UpdateTodo(TodoItem model)
@@ -54,9 +55,8 @@ namespace TodoApp.Services
                 {
                     entity.Description = model.Description;
                     entity.Status = model.Status;
-                    entity.UpdatedOn = model.UpdatedOn;
-                    entity.CreatedOn = model.CreatedOn;
-                    _repository.Update(entity);
+                   
+                  
 
                 }
             }
@@ -66,6 +66,8 @@ namespace TodoApp.Services
 
             }
         }
+
+      
     } 
 
     public interface ITodoService
@@ -73,7 +75,7 @@ namespace TodoApp.Services
         IEnumerable<TodoItem> GetTodos();
         TodoItem InsertTodo(CreateTodoViewModel model);
 
-        TodoItem GetOneTodo(int id);
+        TodoItem GetOneTodo(int? id);
 
         void DeleteTodo(int id);
 

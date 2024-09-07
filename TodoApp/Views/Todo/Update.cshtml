@@ -1,6 +1,6 @@
-﻿@model TodoApp.Models.UpdateTodoViewModel
+﻿@model TodoApp.Models.TodoItem
 @{
-    ViewData["Title"] = "Update";
+    TempData["msg"] = "Success";
 }
 
 <h1>Update Todo</h1>
@@ -8,31 +8,49 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Update">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="Update" method="post">
+           <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
+                <label asp-for="Id" class="control-label">Id</label>
+                <input asp-for="Id" class="form-control" />
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Description" class="control-label">Description</label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
+                <label asp-for="Status" class="control-label">Status</label>
+               <input asp-for="Status" class="form-control" type="text" />
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="UpdatedOn" class="control-label"></label>
-                <input asp-for="UpdatedOn" class="form-control" />
+           @*  <div class="form-group">
+                <label asp-for="UpdatedOn" class="control-label">Updated on</label>
+                <input asp-for="UpdatedOn" class="form-control" type="" />
                 <span asp-validation-for="UpdatedOn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Update" class="btn btn-primary" />
-            </div>
-        </form>
+            </div> *@
+@* 
+   
+    @if (TempData["msg"] != null)
+                {
+    <div class="form-group">
+        @TempData["msg"]
+       <!-- <span asp-validation-for="AuthorName" class="text-success"></span> -->
+        
+    </div> *@
+    
+    <div class="form-group">
+        <button type="submit" value="Update" class="btn btn-primary mt-2" >Update </button>
     </div>
+ </form>
+    </div>
+
 </div>
 
-<div>
+<div class="mt-4">
     <a asp-action="Index">Back to List</a>
 </div>
 

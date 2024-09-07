@@ -37,12 +37,13 @@ namespace TodoApp.Persistence
             {
                 return _context.Set<T>().AsNoTracking().ToList();
             }
-            catch (Exception ex) { 
+            catch (Exception ex)
+            {
                 return Enumerable.Empty<T>();
             }
         }
 
-        public T GetById(int id)
+        public T GetById(int? id)
         {
             try
             {
@@ -69,7 +70,8 @@ namespace TodoApp.Persistence
                 _context.SaveChanges();
                 return obj;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 return obj;
             }
         }
@@ -80,15 +82,42 @@ namespace TodoApp.Persistence
         {
             try
             {
-                _context.Set<T>().Update(obj);
+                // Extract the ID from the object (assuming the ID property is named 'Id')
+                var idProperty = typeof(T).GetProperty("Id");
+
+                if (idProperty == null)
+                {
+                    throw new Exception("ID property not found in the object.");
+                }
+
+                var idValue = idProperty.GetValue(obj);
+
+                if (idValue == null)
+                {
+                    throw new Exception("ID cannot be null.");
+                }
+
+                var entity = _context.Set<T>().Find(idValue);
+
+                if (entity == null)
+                {
+                    throw new Exception("Entity with the given ID not found");
+                }
+
+                // Update entity's properties with obj's values
+                _context.Entry(entity).CurrentValues.SetValues(obj);
+
+                // Save changes
                 _context.SaveChanges();
-                
-                
+
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occured. Update not successful");
+                // Throw a more informative exception while preserving the original exception details
+                throw new Exception("An error occurred. Update not successful", ex);
             }
         }
+
+       
     }
 }

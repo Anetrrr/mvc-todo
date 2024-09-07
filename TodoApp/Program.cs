@@ -10,6 +10,7 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<ITodoService, TodoService>();
 
 var connStr = builder.Configuration.GetConnectionString("tododb");
+
 builder.Services.AddDbContext<TodoAppContext>(
     options => options.UseSqlServer(connStr)
     );

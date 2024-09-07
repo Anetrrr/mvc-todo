@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace TodoApp.Models
@@ -45,13 +46,13 @@ namespace TodoApp.Models
     public class UpdateTodoViewModel
     {
         public int Id { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
         public Status Status { get; set; }
 
-        public DateTime? UpdatedOn { get; set; }
+       
     }
 
-
+    
 }
 
   
